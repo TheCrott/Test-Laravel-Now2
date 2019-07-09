@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "name": "php-now-laravel",
+  "public": true,
+  "builds": [
+    { 
+      "src": "public/index.php",
+      "use": "@juicyfx/php@canary",
+      "config": {
+          "mode": "server",
+          "composer": true,
+          "maxLambdaSize": "50mb"
+        }
+    },
+    { "src": "public/css/*", "use": "@now/static" },
+    { "src": "public/js/*", "use": "@now/static" }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/public/index.php"
+    },
+    {
+      "src": "/(.*)", "dest": "public/$1"
+    }
+  ]
+}
